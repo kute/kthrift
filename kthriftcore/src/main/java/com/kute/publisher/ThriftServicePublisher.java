@@ -42,14 +42,17 @@ public class ThriftServicePublisher implements FactoryBean<Object>, ApplicationC
         return this;
     }
 
+    @Override
     public Class<?> getObjectType() {
         return this.getClass();
     }
 
+    @Override
     public boolean isSingleton() {
         return true;
     }
 
+    @Override
     public void afterPropertiesSet() throws Exception {
         if (port2serviceInterface.containsKey(port)) {
             if (port2serviceInterface.get(port).equals(serviceInterface)) {
@@ -93,13 +96,47 @@ public class ThriftServicePublisher implements FactoryBean<Object>, ApplicationC
         return "localhost";
     }
 
+    @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         this.applicationContext = applicationContext;
     }
 
+    @Override
     public void destroy() throws Exception {
         if (null != server) {
             server.close();
         }
+    }
+
+    public Class<?> getServiceInterface() {
+        return serviceInterface;
+    }
+
+    public void setServiceInterface(Class<?> serviceInterface) {
+        this.serviceInterface = serviceInterface;
+    }
+
+    public Object getServiceImpl() {
+        return serviceImpl;
+    }
+
+    public void setServiceImpl(Object serviceImpl) {
+        this.serviceImpl = serviceImpl;
+    }
+
+    public int getPort() {
+        return port;
+    }
+
+    public void setPort(int port) {
+        this.port = port;
+    }
+
+    public String getServerType() {
+        return serverType;
+    }
+
+    public void setServerType(String serverType) {
+        this.serverType = serverType;
     }
 }

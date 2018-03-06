@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="helloWorldService" class="com.kute.thrift.service.impl.HelloWorldServiceImpl" />
+
+    <bean id="thriftServicePublisher" class="com.kute.publisher.ThriftServicePublisher">
+        <property name="serviceInterface" value="com.kute.thrift.service.HelloWorldService" />
+        <property name="serviceImpl" ref="helloWorldService" />
+        <property name="port" value="8890" />
+        <property name="serverType" value="simple" />
+    </bean>
+
+
+</beans>
