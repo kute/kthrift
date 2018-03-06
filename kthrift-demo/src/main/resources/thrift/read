@@ -1,0 +1,2 @@
+cd simple
+thrift -r --gen java HelloService.thrift

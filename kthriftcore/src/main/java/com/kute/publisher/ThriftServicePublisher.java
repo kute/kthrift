@@ -1,5 +1,6 @@
 package com.kute.publisher;
 
+import com.google.common.collect.Maps;
 import com.kute.server.AbstractKthriftServer;
 import com.kute.server.SimpleKthriftServer;
 import com.kute.util.ServerTypeEnum;
@@ -36,8 +37,9 @@ public class ThriftServicePublisher implements FactoryBean<Object>, ApplicationC
 
     private String serverType = ServerTypeEnum.SIMPLE.getType();
 
-    private static final Map<Integer, Class<?>> port2serviceInterface = new ConcurrentHashMap<Integer, Class<?>>();
+    private static final Map<Integer, Class<?>> port2serviceInterface = Maps.newConcurrentMap();
 
+    @Override
     public Object getObject() throws Exception {
         return this;
     }
